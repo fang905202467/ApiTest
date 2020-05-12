@@ -1,11 +1,10 @@
 #使用ddt来进行数据驱动
 #根据用例的数量来自动生成实例方法，批量执行用例
 import unittest
-from lemon_handle_log.ddt import ddt, data
-from lemon_handle_log.csdemo import Jisuan
-from lemon_handle_log.lemon_03_handleexcel import HandleExcel
-from lemon_handle_log.handle_config import do_config
-from lemon_handle_log.handle_log import do_log
+from libs.ddt import ddt, data
+from scripts.handle_excel import HandleExcel
+from scripts.handle_config import do_config
+from scripts.handle_log import do_log
 
 do_excel = HandleExcel(do_config.get_config("file path", "cases_path"),do_config.get_config("file path", "sheet_name"))
 cases = do_excel.get_cases()

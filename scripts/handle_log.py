@@ -4,15 +4,17 @@
 # @File : handle_log.py 
 # @Software: PyCharm
 
+import os
 import logging
 from scripts.handle_config import do_config
+from scripts.constants import LOGS_DIR
 
 
 class Handlelog:
 
     def __init__(self):
         # 1.定义日志收集器
-        self.case_logger = logging.getLogger(do_config.get_config("log", "logging_name"))  # 创建一个logger对象
+        self.case_logger = logging.getLogger(do_config.get_config("log", "logging_name"))
 
         # 2.指定日志收集器的日志等级
         # NOTSET(0), DEBUG(10), INFO(20), WARNING(30), ERROR(40), CRITICAL(50)
@@ -23,7 +25,7 @@ class Handlelog:
         # 输出到控制台
         console_handle = logging.StreamHandler()  # handler对象
         # 输出到文件
-        file_handle = logging.FileHandler(do_config.get_config("log", "file_name"), encoding="utf-8")
+        file_handle = logging.FileHandler(os.path.join(LOGS_DIR , do_config.get_config("log", "file_name")), encoding="utf-8")
 
         # 4.指定日志输出渠道的日志等级
         console_handle.setLevel(do_config.get_config("log", "console_level"))

@@ -5,6 +5,7 @@
 # @Software: PyCharm
 
 from configparser import ConfigParser
+from scripts.constants import CONFIGS_FILE_PATH
 
 
 class HandleConfig:
@@ -51,7 +52,7 @@ class HandleConfig:
             return msg
 
 
-do_config = HandleConfig("config.conf")
+do_config = HandleConfig(CONFIGS_FILE_PATH)
 
 if __name__ == '__main__':
     # do_config = HandleConfig("config.conf")
