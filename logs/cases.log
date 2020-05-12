@@ -1,0 +1,8 @@
+2020-05-12 21:09:33,340 - case - [INFO] - 60 - [msg]: 这是一个info级别日志
+2020-05-12 21:09:33,340 - case - [INFO] - 60 - [msg]: 这是一个info级别日志
+2020-05-12 21:09:33,340 - case - [WARNING] - 61 - [msg]: 这是一个warning级别日志
+2020-05-12 21:09:33,340 - case - [WARNING] - 61 - [msg]: 这是一个warning级别日志
+2020-05-12 21:09:33,341 - case - [ERROR] - 62 - [msg]: 这是一个error级别日志
+2020-05-12 21:09:33,341 - case - [ERROR] - 62 - [msg]: 这是一个error级别日志
+2020-05-12 21:09:33,341 - case - [CRITICAL] - 63 - [msg]: 这是一个critical级别日志
+2020-05-12 21:09:33,341 - case - [CRITICAL] - 63 - [msg]: 这是一个critical级别日志
