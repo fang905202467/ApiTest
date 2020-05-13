@@ -18,8 +18,10 @@ CONFIGS_FILE_PATH = os.path.join(CONFIGS_DIR,"config.conf")
 #动态获取excel的绝对路径
 DATAS_DIR = os.path.join(BASE_DIR,"datas")
 DATAS_FILE_PATH = os.path.join(DATAS_DIR,"cases.xlsx")
+
 #动态获取log文件的绝对路径
 LOGS_DIR = os.path.join(BASE_DIR,"logs")
+
 #动态获取报告文件的绝对路径
 REPORTS_DIR = os.path.join(BASE_DIR,"reports")
 
