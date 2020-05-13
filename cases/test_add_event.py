@@ -28,6 +28,7 @@ class GetEvent(unittest.TestCase):
 
     @data(*cases)
     def test_add_event(self, one_case):
+
         base_url = do_config.get_config("address", "add_address")
         payload = one_case["data"]
         data_dict = json.loads(payload) #将json转换为字典
