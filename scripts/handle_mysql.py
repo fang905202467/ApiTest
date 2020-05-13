@@ -56,6 +56,19 @@ class HandleMsql:
 
         return start_id + end_num
 
+    @staticmethod
+    def create_release_name():
+        '''
+        随机生成一个发布会名称
+        :return:
+        '''
+        start_release_name = ['小米', '华为', '荣耀', 'vivo']
+        release_name = '发布会'
+        start_id = random.choice(start_release_name)
+        end_num = ''.join(random.sample('0123456789', 6))
+
+        return start_id + end_num + release_name
+
     def is_existesd_id(self, id):
         '''
         判断给定的ID在数据库中是否存在
@@ -67,6 +80,7 @@ class HandleMsql:
             return True
         else:
             return False
+
     def create_not_existesd_id(self):
         '''
         随机生成一个在数据库中不存在的手机号
@@ -79,18 +93,55 @@ class HandleMsql:
 
         return one_id
 
-    def obtain_existesd_id(self):
+    def is_existesd_id(self, name):
         '''
-        获取已存在的id
+        判断给定的name在数据库中是否存在
+        :param name:
         :return:
         '''
-        id = []
+        sql = "SELECT * FROM sign_event WHERE name=%s"
+        if self.run(sql, args=(name,)):
+            return True
+        else:
+            return False
+
+    def create_release_conference_name(self):
+        '''
+        随机生成一个在数据库中不存在的发布会名称
+        :return:
+        '''
+        while True:
+            one_name = self.create_release_name()
+            if not self.is_existesd_id(one_name):
+                break
+
+        return one_name
+
+    def obtain_existesd_id(self):
+        '''
+        随机获取一个已存在的id
+        :return:
+        '''
+        existesd_id = []
         sql = "SELECT * FROM sign_event"
         result = self.run(sql,is_more=True)
         for i in result:
-            id.append(i["id"])
+            existesd_id.append(i["id"])
 
-        return id
+        return random.choice(existesd_id)
+
+    def obtain_existesd_name(self):
+        '''
+        随机获取一个已存在的name
+        :return:
+        '''
+        existesd_name = []
+        sql = "SELECT * FROM sign_event"
+        result = self.run(sql,is_more=True)
+        for i in result:
+            existesd_name.append(i["name"])
+
+        return random.choice(existesd_name)
 if __name__ == '__main__':
     # id = 2
     # sql_1 = "SELECT * FROM sign_event WHERE id=%s"
@@ -99,5 +150,8 @@ if __name__ == '__main__':
     # # result = HandleMsql().run(sql_2, is_more=True)
     # print(result)
     do_mysql = HandleMsql()
-    print("数据库没有：{}".format(do_mysql.create_not_existesd_id()))
+    # print("数据库没有：{}".format(do_mysql.create_not_existesd_id()))
     # print(do_mysql.obtain_existesd_id())
+    # print(do_mysql.create_release_name())
+    print(do_mysql.create_release_conference_name())
+    print(do_mysql.obtain_existesd_name())
