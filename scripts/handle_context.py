@@ -9,7 +9,7 @@ import re
 from scripts.handle_mysql import HandleMsql
 class Context:
     '''
-
+    做数据参数化
     '''
 
     not_existed_id_pattern = r'\${not_existed_id}'
@@ -57,6 +57,7 @@ class Context:
 
             do_mysql.close()
         return data
+    @classmethod
     def release_conference_name(cls, data):
         '''
         参数存在的发布会名称
@@ -65,20 +66,32 @@ class Context:
         '''
         if re.search(cls.re1_name, data):
             do_mysql = HandleMsql()
-            data = re.sub(cls.re1_name, do_mysql.obtain_existesd_name(), data)
+            name = do_mysql.obtain_existesd_name()
+            data = re.sub(cls.re1_name, str(name), data)
 
             do_mysql.close()
         return data
 
     @classmethod
     def readd_parameterization_id(cls, data):
+        '''
+        参数化不存在和存在的id
+        :param data:
+        :return:
+        '''
         data = cls.not_existed_id_replace(data)
         data = cls.invest_user_id(data)
+        data = cls.not_release_conference_name(data)
         data = cls.release_conference_name(data)
         return data
 
     @classmethod
     def readd_parameterization_name(cls, data):
+        '''
+        参数化不存在和存在的name
+        :param data:
+        :return:
+        '''
         data = cls.not_release_conference_name(data)
         data = cls.release_conference_name(data)
         return data
@@ -97,10 +110,10 @@ if __name__ == '__main__':
     # print(Context().readd_parameterization_id(four_str))
     # print(Context().readd_parameterization_id(five_str))
     # print(Context().readd_parameterization_id(six_str))
-    print("------------------------")
-    print(Context().readd_parameterization_name(one_str))
-    print(Context().readd_parameterization_name(two_str))
-    print(Context().readd_parameterization_name(three_str))
-    print(Context().readd_parameterization_name(four_str))
-    print(Context().readd_parameterization_name(five_str))
-    print(Context().readd_parameterization_name(six_str))
+    # print("------------------------")
+    print(Context().readd_parameterization_id(one_str))
+    print(Context().readd_parameterization_id(two_str))
+    print(Context().readd_parameterization_id(three_str))
+    print(Context().readd_parameterization_id(four_str))
+    print(Context().readd_parameterization_id(five_str))
+    print(Context().readd_parameterization_id(six_str))

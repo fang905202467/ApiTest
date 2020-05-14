@@ -52,7 +52,7 @@ class HandleMsql:
         '''
         start_id = ['138','135','199','177']
         start_id = random.choice(start_id)
-        end_num = ''.join(random.sample('0123456789', 8))
+        end_num = ''.join(random.sample('0123456789', 5))
 
         return start_id + end_num
 

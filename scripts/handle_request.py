@@ -12,9 +12,9 @@ class HandleRequest:
     处理请求
     '''
     def __init__(self):
-        self.one_session = requests.Session()  #创建session回话对象
+        self.one_session = requests.Session()  #创建session会话对象
 
-    def to_request(self, url, method='post', data=None, is_json=False):
+    def to_request(self, url, data, method='post', is_json=False):
         '''
 
         :param url: 测试接口
@@ -44,4 +44,12 @@ class HandleRequest:
     def close(self):
         self.one_session.close()
 
-
+if __name__ == '__main__':
+    # do_request = HandleRequest()
+    one_session = requests.Session()
+    data = '{"eid":"1588222319","name":"小米8798797978发布会","limit":"500","status":"1","address":"成都","start_time":"2020-5-30 12:00:00"}'
+    data_dict =json.loads(data)
+    url = 'http://47.104.90.247:8000/api/add_event/'
+    res = one_session.post(url=url, data=data_dict)
+    # res = do_request.to_request(url, data, 'post')
+    print(res)
