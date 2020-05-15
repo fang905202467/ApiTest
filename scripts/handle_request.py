@@ -40,16 +40,17 @@ class HandleRequest:
         else:
             res = None
             print("不支持【{}】其他方法的请求".format(method))
-
+        return res
     def close(self):
         self.one_session.close()
 
 if __name__ == '__main__':
-    # do_request = HandleRequest()
-    one_session = requests.Session()
-    data = '{"eid":"1588222319","name":"小米8798797978发布会","limit":"500","status":"1","address":"成都","start_time":"2020-5-30 12:00:00"}'
+    do_request = HandleRequest()
+    # one_session = requests.Session()
+    data = '{"eid":"1488222","name":"小米879848发布会","limit":"500","status":"1","address":"成都","start_time":"2020-5-30 12:00:00"}'
     data_dict =json.loads(data)
     url = 'http://47.104.90.247:8000/api/add_event/'
-    res = one_session.post(url=url, data=data_dict)
-    # res = do_request.to_request(url, data, 'post')
-    print(res)
+    # res = one_session.post(url=url, data=data_dict)
+    res = do_request.to_request(url, data=data_dict, method='post')
+    print(res.json())
+    do_request.close()
